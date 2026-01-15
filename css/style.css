@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Almendra+SC&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bgColor: #1f1f1f99;
+  --fftext: 'Almendra SC';
+}
+
+html,
+body {
+  height: 100dvh;
+  background-color: var(--bgColor);
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+body {
+  position: relative;
+  color: #fff;
+  font-family: var(--fftext);
+  background: url(../assets/imgs/freepik__giant-arched-doors-inside-an-ominous-dungeon-flank__79577.png);
+  background-size: 100% 100dvh;
+  background-position: center;
+}
+
+.main-container {
+  height: 100%;
+  padding: 2rem;
+  display: grid;
+  grid-template-rows: minmax(100px, 1fr) 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+
+  .header {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    .copyright {
+      width: 100%;
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.4rem;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    h1 {
+      font-size: 8rem;
+      text-shadow: 4px 4px 12px #000;
+      line-height: 1;
+    }
+
+    p {
+      font-weight: bold;
+    }
+  }
+
+  .battle-scene {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    row-gap: 1rem;
+    margin-top: 4rem;
+  }
+
+  .battle-description {
+    font-size: 2rem;
+    background-color: #1f1f1f;
+    padding: 1rem;
+    border: 12px groove #000;
+    border-radius: 0.4rem;
+    text-align: center;
+
+    p {
+      text-shadow: 2px 2px 4px #000;
+    }
+  }
+
+  .text-box {
+    background-color: #1f1f1f;
+    font-size: 2.5rem;
+    width: 100%;
+    border: 12px ridge #000;
+    border-radius: 0.4rem;
+    padding: 2rem;
+    font-family: var(--fftext);
+    text-shadow: 2px 2px 4px #000;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .button-container {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-items: center;
+    gap: 4rem;
+
+    .button {
+      font-family: var(--fftext);
+      font-size: 2.4rem;
+      font-weight: bold;
+      padding: 0.4em 1.5em;
+      border: 8px ridge #000;
+      color: inherit;
+      border-radius: 0.4rem;
+      background-color: #1f1f1f;
+      text-shadow: 2px 2px 4px #000;
+      transition: transform 0.1s ease-out;
+    }
+
+    .button:hover {
+      cursor: pointer;
+      background-color: #1f1f1f;
+      transform: scale(1.05);
+    }
+
+    .button:active {
+      transform: scale(1);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+    }
+
+    button:disabled:hover {
+      transform: none;
+    }
+  }
+
+  .credits {
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px #000;
+    display: flex;
+    gap: 0.4rem;
+    position: absolute;
+    bottom: 1rem;
+  }
+
+  .credits a:hover {
+    opacity: 0.6;
+  }
+}
+
+audio {
+  /* visibility: hidden; */
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
