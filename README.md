@@ -9,3 +9,5 @@
 - **Vanilla JS** <img src="./assets/icons/jsicon.png" width="16px">
 
 Now fully working menu and game loop!
+
+![screenshot](./assets/imgs/screen1.png)
