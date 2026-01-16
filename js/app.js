@@ -1,10 +1,14 @@
 import { Player } from '../js/player.js';
 import { Enemy } from '../js/enemy.js';
-import { enemyData, weapons } from './data.js';
+import { enemyData } from './data.js';
 import {
   attackButton,
   healButton,
   quitButton,
+  muteButton,
+  fadeOverlay,
+  startButton,
+  audioPlayer,
   updateBattleText,
   updateBattleInfo,
 } from './ui.js';
@@ -24,6 +28,29 @@ updateBattleText(`A wild ${currentEnemy.type} appears!`);
 updateBattleInfo(
   `Weapon: ${hero.weapon} | Health: ${hero.health} | Potions: ${hero.potions}`,
 );
+
+const resetGame = () => {
+  hero.health = 100;
+  hero.weapon = 'Axe';
+  hero.potions = 2;
+  enemyIndex = 0;
+  currentEnemy = new Enemy(
+    enemyData[enemyIndex].type,
+    enemyData[enemyIndex].health,
+    enemyData[enemyIndex].damage,
+  );
+  battleActive = true;
+
+  updateBattleText(`A wild ${currentEnemy.type} appears!`);
+  updateBattleInfo(
+    `Weapon: ${hero.weapon} | Health: ${hero.health} | Potions: ${hero.potions}`,
+  );
+  audioPlayer.currentTime = 0;
+  audioPlayer.src = '../assets/audio/mainmenu.mp3';
+  audioPlayer.play();
+
+  enableButtons();
+};
 
 const disableButtons = () => {
   attackButton.disabled = true;
@@ -45,11 +72,19 @@ const rewardWeapon = (player, weaponName) => {
   );
 };
 
-const quitGame = () => {
-  battleActive = false;
-  disableButtons();
-  updateBattleText('You quit the battle... Game Over.');
+const muteAudio = () => {
+  audioPlayer.volume = 0;
 };
+
+muteButton.addEventListener('click', () => {
+  if (audioPlayer.volume == 0) {
+    audioPlayer.volume = 0.1;
+    muteButton.textContent = `MUTE`;
+    return;
+  }
+  muteAudio();
+  muteButton.textContent = 'UNMUTE';
+});
 
 attackButton.addEventListener('click', () => {
   if (!battleActive) {
@@ -95,6 +130,41 @@ attackButton.addEventListener('click', () => {
     } else {
       updateBattleText('🏆 You defeated all the enemies! Victory!');
       battleActive = false;
+
+      // Step 1: Fade audio out smoothly
+      const fadeOutInterval = setInterval(() => {
+        if (audioPlayer.volume > 0.05) {
+          audioPlayer.volume -= 0.05;
+        } else {
+          audioPlayer.volume = 0;
+          clearInterval(fadeOutInterval);
+        }
+      }, 100);
+
+      // Step 2: Fade screen to black
+      setTimeout(() => {
+        fadeOverlay.classList.add('fade-to-black');
+      }, 1200);
+
+      setTimeout(() => {
+        gameScreen.classList.add('hidden');
+        menuScreen.classList.remove('hidden');
+        resetGame();
+
+        fadeOverlay.classList.remove('fade-to-black');
+        fadeOverlay.classList.add('fade-out-overlay');
+
+        // Reset and replay music
+        audioPlayer.currentTime = 0;
+        audioPlayer.play();
+        audioPlayer.volume = 0.1;
+        muteButton.textContent = 'MUTE';
+
+        // Clean up overlay class
+        setTimeout(() => {
+          fadeOverlay.classList.remove('fade-out-overlay');
+        }, 1000);
+      }, 3000);
     }
     return;
   }
@@ -147,7 +217,7 @@ healButton.addEventListener('click', () => {
   setTimeout(() => {
     const enemyDamage = currentEnemy.attack(hero);
     updateBattleText(
-      `${currentEnemy.type} attacks ${hero.name} for ${enemyDamage} damage!`,
+      `${currentEnemy.type} attacks you for ${enemyDamage} damage!`,
     );
     updateBattleInfo(
       `Weapon: ${hero.weapon} | Health: ${hero.health} | Potions: ${hero.potions}`,
@@ -166,5 +236,71 @@ healButton.addEventListener('click', () => {
 });
 
 quitButton.addEventListener('click', () => {
-  quitGame();
+  // Show quit message and stop inputs
+  updateBattleText('You quit the battle... Game Over.');
+  disableButtons();
+  battleActive = false;
+
+  // Step 1: Fade audio out smoothly
+  const fadeOutInterval = setInterval(() => {
+    if (audioPlayer.volume > 0.05) {
+      audioPlayer.volume -= 0.05;
+    } else {
+      audioPlayer.volume = 0;
+      clearInterval(fadeOutInterval);
+    }
+  }, 100);
+
+  // Step 2: Fade screen to black
+  setTimeout(() => {
+    fadeOverlay.classList.add('fade-to-black');
+  }, 1200);
+
+  setTimeout(() => {
+    gameScreen.classList.add('hidden');
+    menuScreen.classList.remove('hidden');
+    resetGame();
+
+    fadeOverlay.classList.remove('fade-to-black');
+    fadeOverlay.classList.add('fade-out-overlay');
+
+    // Reset and replay music
+    audioPlayer.currentTime = 0;
+    audioPlayer.play();
+    audioPlayer.volume = 0.1;
+    muteButton.textContent = 'MUTE';
+
+    // Clean up overlay class
+    setTimeout(() => {
+      fadeOverlay.classList.remove('fade-out-overlay');
+    }, 1000);
+  }, 3000);
 });
+
+const menuScreen = document.querySelector('#menuScreen');
+const gameScreen = document.querySelector('#gameScreen');
+
+startButton.addEventListener('click', () => {
+  // Step 1: Fade to black
+  fadeOverlay.classList.remove('fade-out-overlay');
+  fadeOverlay.classList.add('fade-to-black');
+
+  // Step 2: Wait for fade to black to finish
+  setTimeout(() => {
+    // Step 3: Switch to game screen
+    menuScreen.classList.add('hidden');
+    gameScreen.classList.remove('hidden');
+
+    // Step 4: Fade back in and enable interaction
+    fadeOverlay.classList.remove('fade-to-black');
+    fadeOverlay.classList.add('fade-out-overlay');
+    audioPlayer.src = '../assets/audio/Epic.mp3';
+
+    // Clean up fade-out after it's done
+    setTimeout(() => {
+      fadeOverlay.classList.remove('fade-out-overlay');
+    }, 1000);
+  }, 2000);
+});
+
+audioPlayer.volume = 0.1;

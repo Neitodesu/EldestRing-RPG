@@ -8,34 +8,50 @@
     <link href="css/style.css" rel="stylesheet" />
   </head>
   <body>
+    <div id="initialFadeOverlay"></div>
+    <div id="fadeOverlay"></div>
     <main class="main-container">
-      <div class="header">
-        <h1>ELDEST RING</h1>
-        <p class="copyright">(Totally not the other game title)</p>
-      </div>
-      <div class="battle-scene">
-        <div class="battle-description">
-          <p class="battle-info" id="battleInfo"></p>
+      <section id="menuScreen" class="menu-screen">
+        <h1 class="title">ELDEST RING</h1>
+        <p class="subtitle">(Totally not the other game title)</p>
+        <button id="startBtn" class="menu-button">Start</button>
+      </section>
+      <section id="gameScreen" class="hidden">
+        <div class="header">
+          <h1>ELDEST RING</h1>
+          <p class="copyright">(Totally not the other game title)</p>
         </div>
-        <div class="text-box" id="textBox">Defeat the enemies to win!</div>
-        <div class="button-container">
-          <button class="button" id="attackBtn">Attack ⚔️</button>
-          <button class="button" id="healBtn">Heal ❤️‍🩹</button>
-          <button class="button" id="quitBtn">Quit ☠️</button>
+        <div class="battle-scene">
+          <div class="battle-description">
+            <p class="battle-info" id="battleInfo"></p>
+          </div>
+          <div class="text-box" id="textBox">Defeat the enemies to win!</div>
+          <div class="button-container">
+            <button class="button" id="attackBtn">Attack ⚔️</button>
+            <button class="button" id="healBtn">Heal ❤️‍🩹</button>
+            <button class="button" id="quitBtn">Quit ☠️</button>
+          </div>
         </div>
-      </div>
-      <audio controls src="./assets/audio/Epic.mp3" autoplay muted loop></audio>
-      <p class="credits">
-        Created by&nbsp;
-        <a
-          href="https://github.com/Neitodesu"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Neitodesu</a
-        >
-      </p>
+        <p class="credits">
+          Created by&nbsp;
+          <a
+            href="https://github.com/Neitodesu"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Neitodesu</a
+          >
+        </p>
+      </section>
+      <audio
+        controls
+        src="./assets/audio/mainmenu.mp3"
+        autoplay
+        loop
+        id="audio"
+      ></audio>
+      <button class="mute-btn" id="muteButton">MUTE</button>
     </main>
-    <script type="module" src="./js/app.js" defer></script>
+    <script type="module" src="./js/app.js"></script>
   </body>
 </html>

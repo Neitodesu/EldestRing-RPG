@@ -1,3 +1,4 @@
+/* Base Setup */
 @import url('https://fonts.googleapis.com/css2?family=Almendra+SC&display=swap');
 
 * {
@@ -31,129 +32,283 @@ body {
   background-position: center;
 }
 
+/* Layout Containers */
 .main-container {
   height: 100%;
   padding: 2rem;
-  display: grid;
-  grid-template-rows: minmax(100px, 1fr) 1fr 1fr;
-  align-items: center;
-  justify-items: center;
-
-  .header {
-    display: grid;
-    align-items: center;
-    justify-items: center;
-
-    .copyright {
-      width: 100%;
-      text-align: center;
-      padding: 1rem;
-      font-size: 1.4rem;
-      text-shadow: 2px 2px 4px #000;
-    }
-
-    h1 {
-      font-size: 8rem;
-      text-shadow: 4px 4px 12px #000;
-      line-height: 1;
-    }
-
-    p {
-      font-weight: bold;
-    }
-  }
-
-  .battle-scene {
-    display: grid;
-    align-items: center;
-    justify-items: center;
-    row-gap: 1rem;
-    margin-top: 4rem;
-  }
-
-  .battle-description {
-    font-size: 2rem;
-    background-color: #1f1f1f;
-    padding: 1rem;
-    border: 12px groove #000;
-    border-radius: 0.4rem;
-    text-align: center;
-
-    p {
-      text-shadow: 2px 2px 4px #000;
-    }
-  }
-
-  .text-box {
-    background-color: #1f1f1f;
-    font-size: 2.5rem;
-    width: 100%;
-    border: 12px ridge #000;
-    border-radius: 0.4rem;
-    padding: 2rem;
-    font-family: var(--fftext);
-    text-shadow: 2px 2px 4px #000;
-    display: grid;
-    align-items: center;
-    justify-items: center;
-  }
-
-  .button-container {
-    display: grid;
-    grid-auto-flow: column;
-    align-items: center;
-    justify-items: center;
-    gap: 4rem;
-
-    .button {
-      font-family: var(--fftext);
-      font-size: 2.4rem;
-      font-weight: bold;
-      padding: 0.4em 1.5em;
-      border: 8px ridge #000;
-      color: inherit;
-      border-radius: 0.4rem;
-      background-color: #1f1f1f;
-      text-shadow: 2px 2px 4px #000;
-      transition: transform 0.1s ease-out;
-    }
-
-    .button:hover {
-      cursor: pointer;
-      background-color: #1f1f1f;
-      transform: scale(1.05);
-    }
-
-    .button:active {
-      transform: scale(1);
-    }
-
-    button:disabled {
-      opacity: 0.6;
-    }
-
-    button:disabled:hover {
-      transform: none;
-    }
-  }
-
-  .credits {
-    font-size: 2rem;
-    text-shadow: 2px 2px 4px #000;
-    display: flex;
-    gap: 0.4rem;
-    position: absolute;
-    bottom: 1rem;
-  }
-
-  .credits a:hover {
-    opacity: 0.6;
-  }
+  position: relative;
 }
 
+/* Header */
+.main-container .header {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.main-container .header h1 {
+  font-size: 8rem;
+  text-shadow: 4px 4px 12px #000;
+  line-height: 1;
+}
+
+.main-container .header p,
+.main-container .header .copyright {
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px #000;
+}
+
+/* Battle Scene */
+.main-container .battle-scene {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.battle-description {
+  font-size: 2rem;
+  background-color: #1f1f1f;
+  padding: 1rem;
+  border: 12px groove #000;
+  border-radius: 0.4rem;
+  text-align: center;
+}
+
+.battle-description p {
+  text-shadow: 2px 2px 4px #000;
+}
+
+.text-box {
+  background-color: #1f1f1f;
+  font-size: 2.5rem;
+  width: 80%;
+  border: 12px ridge #000;
+  border-radius: 0.4rem;
+  padding: 2rem;
+  font-family: var(--fftext);
+  text-shadow: 2px 2px 4px #000;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+/* Buttons */
+.button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.button-container .button {
+  font-family: var(--fftext);
+  font-size: 2.4rem;
+  font-weight: bold;
+  padding: 0.4em 1.5em;
+  border: 8px ridge #000;
+  color: inherit;
+  border-radius: 0.4rem;
+  background-color: #1f1f1f;
+  text-shadow: 2px 2px 4px #000;
+  transition: transform 0.1s ease-out;
+}
+
+.button-container .button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.button-container .button:active {
+  transform: scale(1);
+}
+
+.button-container button:disabled {
+  opacity: 0.6;
+}
+
+.button-container button:disabled:hover {
+  transform: none;
+}
+
+/* Credits */
+.credits {
+  font-size: 2rem;
+  text-shadow: 2px 2px 4px #000;
+  display: flex;
+  gap: 0.4rem;
+  position: absolute;
+  bottom: 1rem;
+}
+
+.credits a:hover {
+  opacity: 0.6;
+}
+
+/* Audio + Mute */
 audio {
-  /* visibility: hidden; */
+  visibility: hidden;
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+.mute-btn {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  background-color: #1f1f1f;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000;
+  font-family: inherit;
+  font-size: 1.4rem;
+  padding: 0.4rem 1rem;
+  border: 8px ridge #000;
+  border-radius: 0.4rem;
+}
+
+.mute-btn:hover {
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+/* Menu */
+.menu-button {
+  background-color: #1f1f1f;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000;
+  font-family: inherit;
+  font-size: 1.4rem;
+  padding: 0.4rem 1rem;
+  border: 8px ridge #000;
+  border-radius: 0.4rem;
+  transition: transform 0.1s ease-out;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  animation-delay: 4s;
+}
+
+.menu-button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.menu-screen,
+#gameScreen {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  inset: 0;
+  background-color: var(--bgColor);
+}
+
+#gameScreen.hidden,
+.menu-screen.hidden {
+  display: none;
+}
+
+.menu-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  height: 100%;
+  text-align: center;
+  background-color: var(--bgColor);
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+.menu-screen .title {
+  font-size: 8rem;
+  text-shadow: 3px 3px 6px #000;
+  opacity: 0;
+  animation:
+    fadeIn 1s ease-in-out forwards,
+    glow 6s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.menu-screen .subtitle {
+  font-size: 1.6rem;
+  color: #ccc;
+  text-shadow: 1px 1px 2px #000;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  animation-delay: 3s;
+}
+
+#initialFadeOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: #000;
+  z-index: 9999;
+  animation: fadeOutOverlay 2s ease-in forwards;
+  pointer-events: none;
+}
+
+#fadeOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: #000;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.fade-to-black {
+  animation: fadeToBlack 2s ease-in forwards;
+}
+
+.fade-out-overlay {
+  animation: fadeOutOverlay 1s ease-out forwards;
+}
+
+@keyframes fadeToBlack {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutOverlay {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes glow {
+  0% {
+    filter: drop-shadow(0 0 10px #aaa);
+  }
+
+  50% {
+    filter: drop-shadow(0 0 16px #706e65);
+  }
+
+  100% {
+    filter: drop-shadow(0 0 10px #aaa);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

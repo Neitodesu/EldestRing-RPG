@@ -5,6 +5,10 @@ export const battleTextBox = document.querySelector('#textBox');
 export const attackButton = document.querySelector('#attackBtn');
 export const healButton = document.querySelector('#healBtn');
 export const quitButton = document.querySelector('#quitBtn');
+export const audioPlayer = document.querySelector('#audio');
+export const muteButton = document.querySelector('#muteButton');
+export const fadeOverlay = document.querySelector('#fadeOverlay');
+export const startButton = document.querySelector('#startBtn');
 
 export function updateBattleText(text) {
   battleTextBox.textContent = text;

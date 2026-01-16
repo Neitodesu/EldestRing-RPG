@@ -8,10 +8,4 @@
 - **CSS** <img src="./assets/icons/cssicon.png" width="16px">
 - **Vanilla JS** <img src="./assets/icons/jsicon.png" width="16px">
 
-# To-Do's
-
-- There is no restart button yet so restarting requires refresh
-- Working main menu
-- Create way to mute/unmute music with custom button
-- Plus plenty more!
-
+Now fully working menu and game loop!
