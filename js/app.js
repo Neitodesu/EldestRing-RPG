@@ -295,6 +295,7 @@ startButton.addEventListener('click', () => {
     fadeOverlay.classList.remove('fade-to-black');
     fadeOverlay.classList.add('fade-out-overlay');
     audioPlayer.src = '../assets/audio/Epic.mp3';
+    audioPlayer.play();
 
     // Clean up fade-out after it's done
     setTimeout(() => {
