@@ -1,4 +1,4 @@
-# Eldest Ring Text Based RPG
+# Eldest Ring Text Based RPG ⚔️
 
 <span style="font-size: 16px;">_Totally not the other game title!_</span>
 
