@@ -2,6 +2,8 @@
 
 <span style="font-size: 16px;">_Totally not the other game title!_</span>
 
+## [Live Link](https://neitodesu.github.io/EldestRing-RPG/)
+
 ## Made With
 
 - **HTML** <img src="./assets/icons/htmlicon.png" width="16px">
