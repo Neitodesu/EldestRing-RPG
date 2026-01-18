@@ -3,7 +3,7 @@ import { weapons } from '../js/data.js';
 export class Player {
   constructor(name) {
     this.name = name;
-    this.health = 1;
+    this.health = 100;
     this.weapon = 'Axe';
     this.potions = 2;
   }
