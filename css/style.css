@@ -187,9 +187,6 @@ audio {
   border: 8px ridge #000;
   border-radius: 0.4rem;
   transition: transform 0.1s ease-out;
-  opacity: 0;
-  animation: fadeIn 1s ease-in-out forwards;
-  animation-delay: 4s;
 }
 
 .menu-button:hover {
@@ -223,92 +220,15 @@ audio {
   height: 100%;
   text-align: center;
   background-color: var(--bgColor);
-  animation: fadeIn 2s ease-in-out forwards;
 }
 
 .menu-screen .title {
   font-size: 8rem;
   text-shadow: 3px 3px 6px #000;
-  opacity: 0;
-  animation:
-    fadeIn 1s ease-in-out forwards,
-    glow 6s ease-in-out infinite;
-  animation-delay: 2s;
 }
 
 .menu-screen .subtitle {
   font-size: 1.6rem;
   color: #ccc;
   text-shadow: 1px 1px 2px #000;
-  opacity: 0;
-  animation: fadeIn 1s ease-in-out forwards;
-  animation-delay: 3s;
-}
-
-#initialFadeOverlay {
-  position: fixed;
-  inset: 0;
-  background-color: #000;
-  z-index: 9999;
-  animation: fadeOutOverlay 2s ease-in forwards;
-  pointer-events: none;
-}
-
-#fadeOverlay {
-  position: fixed;
-  inset: 0;
-  background-color: #000;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0;
-}
-
-.fade-to-black {
-  animation: fadeToBlack 2s ease-in forwards;
-}
-
-.fade-out-overlay {
-  animation: fadeOutOverlay 1s ease-out forwards;
-}
-
-@keyframes fadeToBlack {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOutOverlay {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-@keyframes glow {
-  0% {
-    filter: drop-shadow(0 0 10px #aaa);
-  }
-
-  50% {
-    filter: drop-shadow(0 0 16px #706e65);
-  }
-
-  100% {
-    filter: drop-shadow(0 0 10px #aaa);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }

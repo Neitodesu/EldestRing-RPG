@@ -6,12 +6,14 @@ import {
   healButton,
   quitButton,
   muteButton,
-  fadeOverlay,
   startButton,
   audioPlayer,
   updateBattleText,
   updateBattleInfo,
 } from './ui.js';
+
+const menuScreen = document.querySelector('#menuScreen');
+const gameScreen = document.querySelector('#gameScreen');
 
 const hero = new Player('Caeser');
 
@@ -78,7 +80,7 @@ const muteAudio = () => {
 
 muteButton.addEventListener('click', () => {
   if (audioPlayer.volume == 0) {
-    audioPlayer.volume = 0.1;
+    audioPlayer.volume = 1;
     muteButton.textContent = `MUTE`;
     return;
   }
@@ -98,8 +100,6 @@ attackButton.addEventListener('click', () => {
   updateBattleText(`You attack the ${currentEnemy.type} for ${damage} damage`);
 
   // Check for enemy death
-  // If dead, load next enemy
-  // If all dead, win!
 
   if (currentEnemy.isDead()) {
     updateBattleText(`${currentEnemy.type} has been defeated!`);
@@ -117,6 +117,7 @@ attackButton.addEventListener('click', () => {
     }
 
     enemyIndex++;
+    //NOTE: Cycles next enemy
     if (enemyIndex < enemyData.length) {
       setTimeout(() => {
         currentEnemy = new Enemy(
@@ -131,39 +132,16 @@ attackButton.addEventListener('click', () => {
       updateBattleText('🏆 You defeated all the enemies! Victory!');
       battleActive = false;
 
-      // Step 1: Fade audio out smoothly
-      const fadeOutInterval = setInterval(() => {
-        if (audioPlayer.volume > 0.05) {
-          audioPlayer.volume -= 0.05;
-        } else {
-          audioPlayer.volume = 0;
-          clearInterval(fadeOutInterval);
-        }
-      }, 100);
-
-      // Step 2: Fade screen to black
-      setTimeout(() => {
-        fadeOverlay.classList.add('fade-to-black');
-      }, 1200);
-
       setTimeout(() => {
         gameScreen.classList.add('hidden');
         menuScreen.classList.remove('hidden');
         resetGame();
-
-        fadeOverlay.classList.remove('fade-to-black');
-        fadeOverlay.classList.add('fade-out-overlay');
 
         // Reset and replay music
         audioPlayer.currentTime = 0;
         audioPlayer.play();
         audioPlayer.volume = 0.1;
         muteButton.textContent = 'MUTE';
-
-        // Clean up overlay class
-        setTimeout(() => {
-          fadeOverlay.classList.remove('fade-out-overlay');
-        }, 1000);
       }, 3000);
     }
     return;
@@ -236,73 +214,27 @@ healButton.addEventListener('click', () => {
 });
 
 quitButton.addEventListener('click', () => {
-  // Show quit message and stop inputs
   updateBattleText('You quit the battle... Game Over.');
   disableButtons();
   battleActive = false;
-
-  // Step 1: Fade audio out smoothly
-  const fadeOutInterval = setInterval(() => {
-    if (audioPlayer.volume > 0.05) {
-      audioPlayer.volume -= 0.05;
-    } else {
-      audioPlayer.volume = 0;
-      clearInterval(fadeOutInterval);
-    }
-  }, 100);
-
-  // Step 2: Fade screen to black
-  setTimeout(() => {
-    fadeOverlay.classList.add('fade-to-black');
-  }, 1200);
 
   setTimeout(() => {
     gameScreen.classList.add('hidden');
     menuScreen.classList.remove('hidden');
     resetGame();
 
-    fadeOverlay.classList.remove('fade-to-black');
-    fadeOverlay.classList.add('fade-out-overlay');
-
     // Reset and replay music
     audioPlayer.currentTime = 0;
     audioPlayer.play();
-    audioPlayer.volume = 0.1;
-    muteButton.textContent = 'MUTE';
-
-    // Clean up overlay class
-    setTimeout(() => {
-      fadeOverlay.classList.remove('fade-out-overlay');
-    }, 1000);
   }, 3000);
 });
 
-const menuScreen = document.querySelector('#menuScreen');
-const gameScreen = document.querySelector('#gameScreen');
-
 startButton.addEventListener('click', () => {
-  // Step 1: Fade to black
-  fadeOverlay.classList.remove('fade-out-overlay');
-  fadeOverlay.classList.add('fade-to-black');
-
-  // Step 2: Wait for fade to black to finish
   setTimeout(() => {
-    // Step 3: Switch to game screen
     menuScreen.classList.add('hidden');
     gameScreen.classList.remove('hidden');
 
-    // Step 4: Fade back in and enable interaction
-    fadeOverlay.classList.remove('fade-to-black');
-    fadeOverlay.classList.add('fade-out-overlay');
     audioPlayer.src = '../assets/audio/Epic.mp3';
     audioPlayer.currentTime = 0;
-
-    // Clean up fade-out after it's done
-    setTimeout(() => {
-      audioPlayer.start();
-      fadeOverlay.classList.remove('fade-out-overlay');
-    }, 1000);
   }, 2000);
 });
-audioPlayer.play();
-audioPlayer.volume = 0.1;
