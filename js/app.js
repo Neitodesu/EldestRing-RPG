@@ -166,7 +166,7 @@ attackButton.addEventListener('click', () => {
           menuScreen.classList.remove('hidden');
           resetGame();
 
-          audioPlayer.src = '../assets/audio/mainmenu.mp3';
+          audioPlayer.src = '/assets/audio/mainmenu.mp3';
           audioPlayer.play();
           audioPlayer.volume = 1;
         }, 3000);
@@ -217,9 +217,9 @@ healButton.addEventListener('click', () => {
           menuScreen.classList.remove('hidden');
           resetGame();
 
-          audioPlayer.src = '../assets/audio/mainmenu.mp3';
+          audioPlayer.src = '/assets/audio/mainmenu.mp3';
+          audioPlayer.currentTime = 0;
           audioPlayer.play();
-          audioPlayer.volume = 1;
         }, 3000);
       }, 1000);
     } else {
@@ -236,7 +236,10 @@ quitButton.addEventListener('click', () => {
   setTimeout(() => {
     gameScreen.classList.add('hidden');
     menuScreen.classList.remove('hidden');
-    audioPlayer.src = '../assets/audio/mainmenu.mp3';
+
+    audioPlayer.src = '/assets/audio/mainmenu.mp3';
+    audioPlayer.currentTime = 0;
+    audioPlayer.play();
     resetGame();
   }, 3000);
 });
@@ -246,6 +249,8 @@ startButton.addEventListener('click', () => {
     menuScreen.classList.add('hidden');
     gameScreen.classList.remove('hidden');
 
-    audioPlayer.src = '../assets/audio/Epic.mp3';
+    audioPlayer.src = '/assets/audio/Epic.mp3';
+    audioPlayer.currentTime = 0;
+    audioPlayer.play();
   }, 3000);
 });
