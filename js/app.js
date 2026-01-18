@@ -75,6 +75,15 @@ const muteAudio = () => {
   audioPlayer.volume = 0;
 };
 
+const setMusic = (path) => {
+  const url = new URL(path, window.location.href).href;
+
+  audioPlayer.pause();
+  audioPlayer.src = url;
+  audioPlayer.load();
+  audioPlayer.currentTime = 0;
+};
+
 muteButton.addEventListener('click', () => {
   if (audioPlayer.volume == 0) {
     audioPlayer.volume = 1;
@@ -134,10 +143,7 @@ attackButton.addEventListener('click', () => {
         menuScreen.classList.remove('hidden');
         resetGame();
 
-        // Reset and replay music
-        audioPlayer.currentTime = 0;
-        audioPlayer.play();
-        audioPlayer.volume = 1;
+        setMusic('/assets/audio/mainmenu.mp3');
       }, 3000);
     }
     return;
@@ -166,9 +172,7 @@ attackButton.addEventListener('click', () => {
           menuScreen.classList.remove('hidden');
           resetGame();
 
-          audioPlayer.src = '/assets/audio/mainmenu.mp3';
-          audioPlayer.play();
-          audioPlayer.volume = 1;
+          setMusic('/assets/audio/mainmenu.mp3');
         }, 3000);
       }, 1000);
     } else {
@@ -217,9 +221,7 @@ healButton.addEventListener('click', () => {
           menuScreen.classList.remove('hidden');
           resetGame();
 
-          audioPlayer.src = '/assets/audio/mainmenu.mp3';
-          audioPlayer.currentTime = 0;
-          audioPlayer.play();
+          setMusic('/assets/audio/mainmenu.mp3');
         }, 3000);
       }, 1000);
     } else {
@@ -237,9 +239,7 @@ quitButton.addEventListener('click', () => {
     gameScreen.classList.add('hidden');
     menuScreen.classList.remove('hidden');
 
-    audioPlayer.src = '/assets/audio/mainmenu.mp3';
-    audioPlayer.currentTime = 0;
-    audioPlayer.play();
+    setMusic('/assets/audio/mainmenu.mp3');
     resetGame();
   }, 3000);
 });
@@ -249,8 +249,6 @@ startButton.addEventListener('click', () => {
     menuScreen.classList.add('hidden');
     gameScreen.classList.remove('hidden');
 
-    audioPlayer.src = '/assets/audio/Epic.mp3';
-    audioPlayer.currentTime = 0;
-    audioPlayer.play();
+    setMusic('assets/audio/Epic.mp3');
   }, 3000);
 });
