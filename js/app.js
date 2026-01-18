@@ -47,9 +47,6 @@ const resetGame = () => {
   updateBattleInfo(
     `Weapon: ${hero.weapon} | Health: ${hero.health} | Potions: ${hero.potions}`,
   );
-  audioPlayer.currentTime = 0;
-  audioPlayer.src = '../assets/audio/mainmenu.mp3';
-  audioPlayer.play();
 
   enableButtons();
 };
@@ -140,8 +137,7 @@ attackButton.addEventListener('click', () => {
         // Reset and replay music
         audioPlayer.currentTime = 0;
         audioPlayer.play();
-        audioPlayer.volume = 0.1;
-        muteButton.textContent = 'MUTE';
+        audioPlayer.volume = 1;
       }, 3000);
     }
     return;
@@ -165,6 +161,15 @@ attackButton.addEventListener('click', () => {
       setTimeout(() => {
         updateBattleText('You Ded...Game Over...');
         battleActive = false;
+        setTimeout(() => {
+          gameScreen.classList.add('hidden');
+          menuScreen.classList.remove('hidden');
+          resetGame();
+
+          audioPlayer.src = '../assets/audio/mainmenu.mp3';
+          audioPlayer.play();
+          audioPlayer.volume = 1;
+        }, 3000);
       }, 1000);
     } else {
       enableButtons();
@@ -206,6 +211,16 @@ healButton.addEventListener('click', () => {
       setTimeout(() => {
         updateBattleText('You Ded...Game Over...');
         battleActive = false;
+
+        setTimeout(() => {
+          gameScreen.classList.add('hidden');
+          menuScreen.classList.remove('hidden');
+          resetGame();
+
+          audioPlayer.src = '../assets/audio/mainmenu.mp3';
+          audioPlayer.play();
+          audioPlayer.volume = 1;
+        }, 3000);
       }, 1000);
     } else {
       enableButtons();
@@ -221,11 +236,8 @@ quitButton.addEventListener('click', () => {
   setTimeout(() => {
     gameScreen.classList.add('hidden');
     menuScreen.classList.remove('hidden');
+    audioPlayer.src = '../assets/audio/mainmenu.mp3';
     resetGame();
-
-    // Reset and replay music
-    audioPlayer.currentTime = 0;
-    audioPlayer.play();
   }, 3000);
 });
 
@@ -235,7 +247,5 @@ startButton.addEventListener('click', () => {
     gameScreen.classList.remove('hidden');
 
     audioPlayer.src = '../assets/audio/Epic.mp3';
-    audioPlayer.currentTime = 0;
-    audioPlayer.play();
-  }, 2000);
+  }, 3000);
 });
