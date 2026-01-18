@@ -143,7 +143,7 @@ attackButton.addEventListener('click', () => {
         menuScreen.classList.remove('hidden');
         resetGame();
 
-        setMusic('/assets/audio/mainmenu.mp3');
+        setMusic('assets/audio/mainmenu.mp3');
       }, 3000);
     }
     return;
@@ -172,7 +172,7 @@ attackButton.addEventListener('click', () => {
           menuScreen.classList.remove('hidden');
           resetGame();
 
-          setMusic('/assets/audio/mainmenu.mp3');
+          setMusic('assets/audio/mainmenu.mp3');
         }, 3000);
       }, 1000);
     } else {
@@ -221,7 +221,7 @@ healButton.addEventListener('click', () => {
           menuScreen.classList.remove('hidden');
           resetGame();
 
-          setMusic('/assets/audio/mainmenu.mp3');
+          setMusic('assets/audio/mainmenu.mp3');
         }, 3000);
       }, 1000);
     } else {
@@ -239,7 +239,7 @@ quitButton.addEventListener('click', () => {
     gameScreen.classList.add('hidden');
     menuScreen.classList.remove('hidden');
 
-    setMusic('/assets/audio/mainmenu.mp3');
+    setMusic('assets/audio/mainmenu.mp3');
     resetGame();
   }, 3000);
 });
