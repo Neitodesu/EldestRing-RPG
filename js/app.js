@@ -236,5 +236,6 @@ startButton.addEventListener('click', () => {
 
     audioPlayer.src = '../assets/audio/Epic.mp3';
     audioPlayer.currentTime = 0;
+    audioPlayer.play();
   }, 2000);
 });
