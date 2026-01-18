@@ -82,6 +82,7 @@ const setMusic = (path) => {
   audioPlayer.src = url;
   audioPlayer.load();
   audioPlayer.currentTime = 0;
+  audioPlayer.play();
 };
 
 muteButton.addEventListener('click', () => {
@@ -252,3 +253,5 @@ startButton.addEventListener('click', () => {
     setMusic('assets/audio/Epic.mp3');
   }, 3000);
 });
+
+setMusic('assets/audio/mainmenu.mp3');
