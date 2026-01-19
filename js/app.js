@@ -132,7 +132,7 @@ attackButton.addEventListener('click', () => {
         );
         updateBattleText(`A wild ${currentEnemy.type} appears!`);
         enableButtons();
-      }, 2000);
+      }, 2500);
     } else {
       updateBattleText('🏆 You defeated all the enemies! Victory!');
       battleActive = false;
@@ -177,7 +177,7 @@ attackButton.addEventListener('click', () => {
     } else {
       enableButtons();
     }
-  }, 800);
+  }, 1000);
 });
 
 healButton.addEventListener('click', () => {
@@ -240,7 +240,7 @@ quitButton.addEventListener('click', () => {
 
     setMusic('assets/audio/mainmenu.mp3');
     resetGame();
-  }, 3000);
+  }, 2000);
 });
 
 startButton.addEventListener('click', () => {
@@ -249,7 +249,7 @@ startButton.addEventListener('click', () => {
     gameScreen.classList.remove('hidden');
 
     setMusic('assets/audio/Epic.mp3');
-  }, 3000);
+  }, 2000);
 });
 
 setMusic('assets/audio/mainmenu.mp3');
