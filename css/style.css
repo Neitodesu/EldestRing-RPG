@@ -286,13 +286,13 @@ audio {
 
 @keyframes titleGlow {
   0% {
-    filter: drop-shadow(0 0 4px #ffffffbf);
+    filter: drop-shadow(0 0 12px #6f706d);
   }
   50% {
-    filter: drop-shadow(0 0 6px #ffffff99);
+    filter: drop-shadow(0 0 16px #6f706d);
   }
   100% {
-    filter: drop-shadow(0 0 4px #ffffffbf);
+    filter: drop-shadow(0 0 12px #6f706d);
   }
 }
 
