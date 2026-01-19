@@ -10,10 +10,9 @@ import {
   audioPlayer,
   updateBattleText,
   updateBattleInfo,
+  menuScreen,
+  gameScreen,
 } from './ui.js';
-
-const menuScreen = document.querySelector('#menuScreen');
-const gameScreen = document.querySelector('#gameScreen');
 
 const hero = new Player('Caeser');
 
@@ -76,11 +75,10 @@ const muteAudio = () => {
 };
 
 const setMusic = (path) => {
-  const url = new URL(path, window.location.href).href;
-
   audioPlayer.pause();
-  audioPlayer.src = url;
+  audioPlayer.src = path;
   audioPlayer.load();
+  audioPlayer.volume = 0.1;
   audioPlayer.currentTime = 0;
   audioPlayer.play();
 };
