@@ -85,7 +85,7 @@ const setMusic = (path) => {
 
 muteButton.addEventListener('click', () => {
   if (audioPlayer.volume == 0) {
-    audioPlayer.volume = 1;
+    audioPlayer.volume = 0.1;
     muteButton.textContent = `MUTE`;
     return;
   }
