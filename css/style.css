@@ -169,29 +169,13 @@ audio {
   padding: 0.4rem 1rem;
   border: 8px ridge #000;
   border-radius: 0.4rem;
+  opacity: 0;
+  animation: menuFadeIn 4s ease-out 2s forwards;
 }
 
 .mute-btn:hover {
   cursor: pointer;
   opacity: 0.85;
-}
-
-/* Menu */
-.menu-button {
-  background-color: #1f1f1f;
-  color: #fff;
-  text-shadow: 2px 2px 4px #000;
-  font-family: inherit;
-  font-size: 3rem;
-  padding: 0.4rem 1rem;
-  border: 8px ridge #000;
-  border-radius: 0.4rem;
-  transition: transform 0.1s ease-out;
-}
-
-.menu-button:hover {
-  cursor: pointer;
-  transform: scale(1.1);
 }
 
 .menu-screen,
@@ -211,6 +195,26 @@ audio {
   display: none;
 }
 
+/* Menu */
+.menu-button {
+  background-color: #1f1f1f;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000;
+  font-family: inherit;
+  font-size: 3rem;
+  padding: 0.4rem 1rem;
+  border: 8px ridge #000;
+  border-radius: 0.4rem;
+  opacity: 0;
+  transition: transform 0.1s ease-out;
+  animation: menuFadeIn 2s ease-out 2.5s forwards;
+}
+
+.menu-button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
 .menu-screen {
   display: flex;
   flex-direction: column;
@@ -219,18 +223,77 @@ audio {
   gap: 2rem;
   height: 100%;
   text-align: center;
-  background-color: var(--bgColor);
+
+  .credits {
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px #000;
+    display: flex;
+    gap: 0.4rem;
+    position: absolute;
+    bottom: 1rem;
+    opacity: 0;
+    animation: menuFadeIn 3s ease-out 2s forwards;
+  }
 }
 
 .menu-screen .title {
   text-shadow: 3px 3px 6px #000;
+  filter: drop-shadow(0 0 0px #fff);
   font-size: 8rem;
+  opacity: 0;
+  animation:
+    menuFadeIn 5s ease-out 0.4s forwards,
+    titleGlow 5s ease-out 0.4s infinite;
 }
 
 .menu-screen .subtitle {
   font-size: 1.4rem;
   color: #ccc;
   text-shadow: 1px 1px 2px #000;
+  opacity: 0;
+  animation: menuFadeIn 3s ease-out 1.5s forwards;
+}
+
+#fadeOverlay {
+  position: absolute;
+  background-color: #000;
+  height: 100%;
+  width: 100%;
+
+  animation: screenLighten 8s ease-out forwards;
+}
+
+@keyframes menuFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes screenLighten {
+  0% {
+    background-color: #000;
+  }
+  25% {
+    background-color: #000;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes titleGlow {
+  0% {
+    filter: drop-shadow(0 0 4px #ffffffbf);
+  }
+  50% {
+    filter: drop-shadow(0 0 6px #ffffff99);
+  }
+  100% {
+    filter: drop-shadow(0 0 4px #ffffffbf);
+  }
 }
 
 @media (max-width: 798px) {
